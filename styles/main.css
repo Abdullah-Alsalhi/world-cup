@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box !important;
+  font-family: "Almarai", sans-serif !important;
+}
+
+:root {
+  --color-primary: #6c1d45;
+  --color-primary-dark: #47132d;
+  --color-whiter: #ebdee1;
+  --color-transparent: #bb1a3d27;
+}
+
+html * {
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+}
+
+.bg-primary {
+  background-color: var(--color-primary-dark) !important;
+  color: white;
+  font-weight: bold;
+  margin: 0 !important;
+}
+
+.bg-secondary {
+  background-color: var(--color-primary) !important;
+  color: white;
+  font-weight: bold;
+  margin: 0 !important;
+}
+
+.bg-success {
+  background-color: white !important;
+  color: var(--color-primary-dark) !important;
+  margin: 0 !important;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-whiter);
+}
+
+/* header */
+#header {
+  position: relative;
+}
+
+
+#bgImg {
+  height: 30vh;
+  background-color: var(--color-primary);
+  background-position: center;
+  background-repeat: repeat-x;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+  border-bottom: 2px solid var(--color-primary-dark);
+  transition: all 2ms;
+}
+
+
+#bgImg::before {
+  content: 'كأس';
+  position: absolute;
+  width: fit-content;
+  z-index: 9999;
+  height: 100px;
+  top: 10%;
+  right: 10%;
+  color: var(--color-whiter);
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+#bgImg::after {
+  content: 'العالم';
+  position: absolute;
+  width: fit-content;
+  z-index: 9999;
+  height: 100px;
+  top: 20%;
+  right: 15%;
+  color: var(--color-whiter);
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+
+
+#bgImg:hover {
+  filter: brightness(105%);
+}
+
+#logoImg {
+  width: 15rem;
+  height: 15rem;
+  background-size: contain;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  background-repeat: no-repeat;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+}
+
+#qatar2022 {
+  width: 100%;
+  height: calc(30vh / 3);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+}
+
+#header::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 80%;
+  height: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 10px auto;
+  background-color: var(--color-transparent);
+}
+/* // header // */
+
+/* btns */
+
+
+.btn-outline-primary {
+  border: 0;
+  color: var(--color-primary-dark);
+  border-bottom: 1px solid var(--color-primary-dark);
+  border-radius: 0;
+  margin-left: 2px;
+}
+
+
+.btn-outline-primary:hover,
+.active {
+  background-color: var(--color-primary-dark) !important;
+  border-radius: 5px;
+  border: 0;
+}
+/* // btns // */
+
+/* Standings */
+
+#teamCrest {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid var(--color-whiter);
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

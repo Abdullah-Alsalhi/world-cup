@@ -1,0 +1,203 @@
+<div class="row">
+        <div class="col-sm-6 my-1">
+          <div class="card">
+            <div
+              class="card-header bg-primary p-3 d-flex justify-content-center align-items-center"
+            >
+              <b>Group_A</b>
+            </div>
+            <div class="row bg-secondary p-2">
+              <div class="col-sm-1">#</div>
+              <div
+                class="col-sm-3 d-flex justify-content-center align-items-center"
+              >
+                <div>teams</div>
+              </div>
+              <div
+                class="col-sm-2 d-flex justify-content-center align-items-center"
+              >
+                W
+              </div>
+              <div
+                class="col-sm-2 d-flex justify-content-center align-items-center"
+              >
+                D
+              </div>
+              <div
+                class="col-sm-2 d-flex justify-content-center align-items-center"
+              >
+                L
+              </div>
+              <div
+                class="col-sm-2 d-flex justify-content-center align-items-center"
+              >
+                Pts
+              </div>
+            </div>
+            <div id="teamOrder" class="order-1">
+              <div class="row bg-success">
+                <div
+                  class="col-sm-1 p-1 d-flex justify-content-center align-items-center"
+                >
+                  1
+                </div>
+                <div
+                  class="col-sm-3 p-1 d-flex justify-content-center align-items-center"
+                >
+                  <div
+                    id="teamCrest"
+                    class="mx-1"
+                    style="
+                      background-image: url('https://images4.alphacoders.com/184/184248.jpg');
+                    "
+                  ></div>
+                  <div id="teamTla">KSA</div>
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+              </div>
+            </div>
+            <div id="teamOrder" class="order-2">
+              <div class="row bg-success">
+                <div
+                  class="col-sm-1 p-1 d-flex justify-content-center align-items-center"
+                >
+                  1
+                </div>
+                <div
+                  class="col-sm-3 p-1 d-flex justify-content-center align-items-center"
+                >
+                  <div
+                    id="teamCrest"
+                    class="mx-1"
+                    style="
+                      background-image: url('https://images4.alphacoders.com/184/184248.jpg');
+                    "
+                  ></div>
+                  <div id="teamTla">KSA</div>
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+              </div>
+            </div>
+            <div id="teamOrder" class="order-3">
+              <div class="row bg-success">
+                <div
+                  class="col-sm-1 p-1 d-flex justify-content-center align-items-center"
+                >
+                  1
+                </div>
+                <div
+                  class="col-sm-3 p-1 d-flex justify-content-center align-items-center"
+                >
+                  <div
+                    id="teamCrest"
+                    class="mx-1"
+                    style="
+                      background-image: url('https://images4.alphacoders.com/184/184248.jpg');
+                    "
+                  ></div>
+                  <div id="teamTla">KSA</div>
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+              </div>
+            </div>
+            <div id="teamOrder" class="order-4">
+              <div class="row bg-success">
+                <div
+                  class="col-sm-1 p-1 d-flex justify-content-center align-items-center"
+                >
+                  1
+                </div>
+                <div
+                  class="col-sm-3 p-1 d-flex justify-content-center align-items-center"
+                >
+                  <div
+                    id="teamCrest"
+                    class="mx-1"
+                    style="
+                      background-image: url('https://images4.alphacoders.com/184/184248.jpg');
+                    "
+                  ></div>
+                  <div id="teamTla">KSA</div>
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+                <div
+                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                >
+                  0
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
