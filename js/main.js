@@ -64,8 +64,8 @@ function getStandings() {
         standingsDiv.firstElementChild.innerHTML += content;
         for (let team of standing.table) {
           content = `
-          <div id="teamOrder" class="order-${team.position}">
-              <div class="row bg-success">
+          <div id="teamOrder${team.position}" class="order-${team.position}">
+              <div class="row bg-success  team-row"">
                 <div
                   class="col-sm-1 p-1 d-flex justify-content-center align-items-center"
                 >
@@ -115,9 +115,10 @@ function getStandings() {
 btns.forEach((btn) =>
   btn.addEventListener("click", function (e) {
     e.preventDefault();
+    if (this.classList.contains("active")) return;
     btns.forEach((btn) => btn.classList.remove("active"));
     this.classList.add("active");
-    getStandings();
+    if (this.innerText === "المجموعات") getStandings();
   })
 );
 
