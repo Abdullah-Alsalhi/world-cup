@@ -5,7 +5,6 @@ const apiToken = "321d42def7934e019575f79b9b90442d";
 const dataDiv = document.getElementById("data");
 const btns = document.querySelectorAll(".btn");
 
-
 // FUNCTION TO GET data
 function getdata() {
   const standings = "standings";
@@ -21,7 +20,7 @@ function getdata() {
       const standings = res.data.standings;
       for (let standing of standings) {
         let content = `
-            <div class="col-sm-6 my-2">
+            <div class="col-sm-6 col-12 my-2">
               <div class="card">
                 <div
                 class="card-header bg-primary p-3 d-flex justify-content-center align-items-center"
@@ -29,29 +28,29 @@ function getdata() {
                   <b>${standing.group}</b>
                 </div>
               <div class="row bg-secondary p-2">
-                <div class="col-sm-1">#</div>
+                <div class="col col-sm-1">#</div>
                   <div
-                    class="col-sm-3 d-flex justify-content-center align-items-center"
+                    class="col col-sm-3 d-flex justify-content-center align-items-center"
                   >
                     teams
                   </div>
                   <div
-                  class="col-sm-2 d-flex justify-content-center align-items-center"
+                  class="col col-sm-2 d-flex justify-content-center align-items-center"
                   >
                     W
                   </div>
                 <div
-                  class="col-sm-2 d-flex justify-content-center align-items-center"
+                  class="col col-sm-2 d-flex justify-content-center align-items-center"
                   >
                     D
                 </div>
                 <div
-                  class="col-sm-2 d-flex justify-content-center align-items-center"
+                  class="col col-sm-2 d-flex justify-content-center align-items-center"
                   >
                     L
                 </div>
                 <div
-                  class="col-sm-2 d-flex justify-content-center align-items-center"
+                  class="col col-sm-2 d-flex justify-content-center align-items-center"
                 >
                   Pts
                 </div>
@@ -63,12 +62,12 @@ function getdata() {
           <div id="teamOrder${team.position}" class="order-${team.position}">
               <div class="row bg-success  team-row"">
                 <div
-                  class="col-sm-1 p-1 d-flex justify-content-center align-items-center"
+                  class="col col-sm-1 p-1 d-flex justify-content-center align-items-center"
                 >
                 ${team.position}
                 </div>
                 <div
-                  class="col-sm-3 p-1 d-flex justify-content-center align-items-center"
+                  class="col col-sm-3 p-1 d-flex justify-content-center align-items-center"
                 >
                   <div
                     id="teamCrest"
@@ -80,22 +79,22 @@ function getdata() {
                   <div id="teamTla" data-id='${team.team.id}'>${team.team.tla}</div>
                 </div>
                 <div
-                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                  class="col col-sm-2 p-1 d-flex justify-content-center align-items-center"
                 >
                   ${team.won}
                 </div>
                 <div
-                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                  class="col col-sm-2 p-1 d-flex justify-content-center align-items-center"
                 >
                   ${team.draw}
                 </div>
                 <div
-                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                  class="col col-sm-2 p-1 d-flex justify-content-center align-items-center"
                 >
                   ${team.lost}
                 </div>
                 <div
-                  class="col-sm-2 p-1 d-flex justify-content-center align-items-center"
+                  class="col col-sm-2 p-1 d-flex justify-content-center align-items-center"
                 >
                   ${team.points}
                 </div>
@@ -110,9 +109,7 @@ function getdata() {
 
 // FUNCTION TO GET MATCHES
 
-function getMatches() {
-
-}
+function getMatches() {}
 
 // ADD EVENT TO EACH BTN
 btns.forEach((btn) =>
