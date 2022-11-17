@@ -1,31 +1,27 @@
 // API INFORMATION
 const baseUrl = "https://api.football-data.org/v4/competitions/WC/";
-const aptToken = "321d42def7934e019575f79b9b90442d";
+const apiToken = "321d42def7934e019575f79b9b90442d";
 // HTML ELEMENTS
-const standingsDiv = document.getElementById("standings");
+const dataDiv = document.getElementById("data");
 const btns = document.querySelectorAll(".btn");
 
-// standings row
 
-const standingsContainer = document.createElement("div");
-standingsContainer.classList.add("row");
-
-// FUNCTION TO GET STANDINGS
-function getStandings() {
-  const STANDINGS = "standings";
-  standingsDiv.firstElementChild.innerHTML = "";
+// FUNCTION TO GET data
+function getdata() {
+  const standings = "standings";
+  dataDiv.firstElementChild.innerHTML = "";
 
   axios
-    .get(`${baseUrl}${STANDINGS}`, {
+    .get(`${baseUrl}${standings}`, {
       headers: {
-        "X-Auth-Token": "321d42def7934e019575f79b9b90442d",
+        "X-Auth-Token": apiToken,
       },
     })
     .then((res) => {
       const standings = res.data.standings;
       for (let standing of standings) {
         let content = `
-            <div class="col-sm-6 my-1">
+            <div class="col-sm-6 my-2">
               <div class="card">
                 <div
                 class="card-header bg-primary p-3 d-flex justify-content-center align-items-center"
@@ -61,7 +57,7 @@ function getStandings() {
                 </div>
               </div>
         `;
-        standingsDiv.firstElementChild.innerHTML += content;
+        dataDiv.firstElementChild.innerHTML += content;
         for (let team of standing.table) {
           content = `
           <div id="teamOrder${team.position}" class="order-${team.position}">
@@ -105,12 +101,19 @@ function getStandings() {
                 </div>
               </div>
           `;
-          standingsDiv.firstElementChild.lastElementChild.innerHTML += content;
+          dataDiv.firstElementChild.lastElementChild.innerHTML += content;
         }
       }
     })
     .catch((err) => console.log(err.name));
 }
+
+// FUNCTION TO GET MATCHES
+
+function getMatches() {
+
+}
+
 // ADD EVENT TO EACH BTN
 btns.forEach((btn) =>
   btn.addEventListener("click", function (e) {
@@ -118,8 +121,9 @@ btns.forEach((btn) =>
     if (this.classList.contains("active")) return;
     btns.forEach((btn) => btn.classList.remove("active"));
     this.classList.add("active");
-    if (this.innerText === "المجموعات") getStandings();
+    if (this.innerText === "المجموعات") getdata();
+    else if (this.innerText === "المباريات");
   })
 );
 
-window.onload = getStandings;
+window.onload = getdata;

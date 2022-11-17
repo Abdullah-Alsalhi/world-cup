@@ -66,22 +66,54 @@
         الإحصائيات
       </button>
     </section>
-    <!-- standings -->
-    <section id="standings" class="container my-5">
+    <!-- data to show -->
+    <section id="data" class="container my-5">
+      <div class="row"></div>
+    </section>
+    <section class="container">
       <div class="row">
-        
+        <div class="col-sm-9 my-1 center-item">
+          <div class="d-flex">
+            <div
+              class="d-flex justify-content-center align-items-center home-team py-0 col-sm-3 bg-primary rounded-pill rounded-pill-end"
+            >
+              <div
+                class="teamCrest mx-2"
+                style="
+                  background-image: url('./assets/images/qatar-world-cup.png');
+                "
+              ></div>
+              <div class="tla">KSA</div>
+            </div>
+            <div
+              class="d-flex justify-content-between align-items-center match-info px-5 col-sm-6 bg-secondary"
+            >
+              <div class="me-2">-</div>
+              <div class="text-center flex-grow-1">
+                <div style="background-image: url('./assets/images/qatar-world-cup.png');" class="teamCrest center-item"></div>
+                <div class="date">20/11/2022</div>
+                <div class="stage">stage</div>
+
+              </div>
+              <div class="ms-2">-</div>
+
+            </div>
+            <div
+              class="d-flex justify-content-center align-items-center away-team p-5 col-sm-3 bg-primary rounded-pill rounded-pill-start"
+            >
+            <div class="tla">ARG</div>
+            <div
+            class="teamCrest mx-2"
+            style="
+              background-image: url('./assets/images/qatar-world-cup.png');
+            "
+          ></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <!--// standings  //-->
-
-    <!-- matches -->
-    <section id="matches" class="container my-5">
-      <div class="row">
-        
-      </div>
-    </section>
-    <!--// matches //-->
-
+    <!--// data to show  //-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script>
     <script src="./js/main.js"></script>
   </body>
