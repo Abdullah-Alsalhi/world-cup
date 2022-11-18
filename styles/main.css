@@ -22,7 +22,9 @@ html * {
   font-weight: bold;
   margin: 0 !important;
 }
-
+.text-bg-warning {
+  color: var(--color-primary-dark) !important;
+}
 .bg-secondary {
   background-color: var(--color-primary) !important;
   color: white;
@@ -35,7 +37,11 @@ html * {
   color: var(--color-primary-dark) !important;
   margin: 0 !important;
 }
-
+.bg-info {
+  background-color: #c04381 !important;
+  color: var(--color-whiter);
+  font-weight: bold;
+}
 body {
   margin: 0;
   background-color: var(--color-whiter);
@@ -60,7 +66,6 @@ body {
 // No media query for `xs` since this is the default in Bootstrap
 
 // Small devices (landscape phones, 576px and up) */
-
 
 #bgImg::before {
   content: "كأس";
@@ -162,8 +167,8 @@ body {
 }
 
 .teamCrest {
-  width: 50px;
-  height: 50px;
+  width: 2.5rem;
+  height:2.5rem;
 }
 
 .team-row:not(last-child) {
@@ -186,10 +191,15 @@ body {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
 }
+.team-name {
+  font-size: 0.8rem;
+  font-weight: 100;
+}
 
-
-
-
+.card-header {
+  border: 0;
+  margin: 0;
+}
 /* 
 
 media query
@@ -222,17 +232,28 @@ media query
 
 /* // Medium devices (tablets, 768px and up) */
 @media screen and (min-width: 768px) {
-  /* // Large devices (desktops, 992px and up) */
-  @media screen and (min-width: 992px) {
+  .teamCrest {
+    width: 50px;
+    height: 50px;
   }
 
-  /* // X-Large devices (large desktops, 1200px and up) */
-  @media screen and (min-width: 1200px) {
+  .team-name {
+    font-size: 1.5rem;
+    font-weight: 800;
   }
 }
 
+/* // Large devices (desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+}
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media screen and (min-width: 1200px) {
+}
 /* // XX-Large devices (larger desktops, 1400px and up) */
 @media screen and (min-width: 1400px) {
 }
 
 /* // media query // */
+
+

@@ -6,7 +6,7 @@ const dataDiv = document.getElementById("data");
 const btns = document.querySelectorAll(".btn");
 
 // FUNCTION TO GET data
-function getdata() {
+function getStandings() {
   const standings = "standings";
   dataDiv.firstElementChild.innerHTML = "";
 
@@ -118,9 +118,9 @@ btns.forEach((btn) =>
     if (this.classList.contains("active")) return;
     btns.forEach((btn) => btn.classList.remove("active"));
     this.classList.add("active");
-    if (this.innerText === "المجموعات") getdata();
+    if (this.innerText === "المجموعات") getStandings();
     else if (this.innerText === "المباريات");
   })
 );
 
-window.onload = getdata;
+window.onload = getStandings;
