@@ -162,7 +162,13 @@ function getMatches() {
             </ul>
           </div>
           <div class="card-body">
-            <h5 class="card-title">${match.stage}</h5>
+            <h5 class="card-title">
+            ${
+              match.stage === "GROUP_STAGE"
+                ? "مرحلة المجموعات"
+                : resposne.data.stage
+            }
+            </h5>
             <div class="w-100 bg-success text-white row">
               <div class="team-home col-3 bg-primary rounded-1">
                   <div class="teamCrest mt-1 matchCrest mx-2 d-inline-block" style="background-image: url('${
@@ -246,13 +252,13 @@ function getMatchInfo(matchId) {
       let content = `
       <div class="accordion-body">
         <div class="d-flex justify-content-between">
-          <h5>${resposne.data.homeTeam.name}</h5>
-          <h5>${resposne.data.awayTeam.name}</h5>
+          <h5 class='fs-1'>${resposne.data.homeTeam.name}</h5>
+          <h5 class='fs-1'>${resposne.data.awayTeam.name}</h5>
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center">
-          <h5>
-            <span>${days[matchDate.day]}</span>
-            <span>${matchDate.dayInMonth} - ${matchDate.month} - 2022 | ${
+          <h5 style="direction: rtl;">
+            <span>${days[matchDate.day]}<br></span>
+            <span>${matchDate.dayInMonth} - ${matchDate.month === 11 ? 'نوفمبر' : 'ديسمبر'} | ${
         matchDate.hour
       }:${matchDate.minutes == "0" ? "00" : matchDate.minutes}</span></h5>
           <h4>${resposne.data.status}</h4>
