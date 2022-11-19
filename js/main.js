@@ -4,7 +4,7 @@ const apiToken = "321d42def7934e019575f79b9b90442d";
 // HTML ELEMENTS
 const dataDiv = document.getElementById("data");
 const btns = document.querySelectorAll(".btn");
-const matchDetails = document.getElementById('matchDetails');
+const matchDetails = document.getElementById("matchDetails");
 // object of days
 
 days = {
@@ -193,13 +193,21 @@ function getMatches() {
               </div>
             </div>
             <div class="accordion accordion-flush my-4" id="matchDetails">
-            <div class="accordion-item" data-id="${match.id}">
+            <div class="accordion-item" data-matchId="${match.id}">
               <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed fw-semibold fs-1 text-center text-bg-info" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${match.id}" aria-expanded="false" aria-controls="flush-collapseOne">
-                  <h6 class="w-100 text-center">إظهار تفاصيل المباراة</h6>
+                <button class="accordion-button collapsed fw-semibold fs-1 text-center text-bg-info" data-matchId=${
+                  match.id
+                } type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${
+          match.id
+        }" aria-expanded="false" aria-controls="flush-collapseOne">
+                  <h6 class="w-100 text-center d-inline-block" data-matchId=${
+                    match.id
+                  }>تفاصيل المباراة</h6>
                 </button>
               </h2>
-              <div id="flush-collapse${match.id}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#matchDetails">
+              <div id="flush-collapse${
+                match.id
+              }" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#matchDetails">
                 <div class="accordion-body">
                   <div class="d-flex justify-content-between">
                     <h5>Qatar</h5>
@@ -214,7 +222,6 @@ function getMatches() {
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
         <hr>
@@ -224,6 +231,53 @@ function getMatches() {
     })
     .catch((err) => console.log(err.name));
 }
+
+function getMatchInfo(matchId) {
+  document.getElementById(`flush-collapse${matchId}`).innerHTML = "";
+  const matches = "matches";
+  axios
+    .get(`http://api.football-data.org/v4/matches/${matchId}`, {
+      headers: {
+        "X-Auth-Token": apiToken,
+      },
+    })
+    .then((resposne) => {
+      let matchDate = utcDateFormate(resposne.data.utcDate);
+      let content = `
+      <div class="accordion-body">
+        <div class="d-flex justify-content-between">
+          <h5>${resposne.data.homeTeam.name}</h5>
+          <h5>${resposne.data.awayTeam.name}</h5>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <h5>
+            <span>${days[matchDate.day]}</span>
+            <span>${matchDate.dayInMonth} - ${matchDate.month} - 2022 | ${
+        matchDate.hour
+      }:${matchDate.minutes == "0" ? "00" : matchDate.minutes}</span></h5>
+          <h4>${resposne.data.status}</h4>
+          <h6>ملعب المباراة <br><b>${resposne.data.venue}</b></h6>
+          <h6>${
+            resposne.data.stage === "GROUP_STAGE"
+              ? "مرحلة المجموعات"
+              : resposne.data.stage
+          }</h6>
+        
+      </div>
+      `;
+      document.getElementById(`flush-collapse${matchId}`).innerHTML = content;
+    })
+    .catch((err) => console.log(err.name));
+}
+
+document.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains("opend")) return;
+  if (e.target.hasAttribute("data-matchId")) {
+    e.target.classList.add("opend");
+    getMatchInfo(e.target.dataset.matchid);
+  }
+});
 
 // ADD EVENT TO EACH BTN
 btns.forEach((btn) =>

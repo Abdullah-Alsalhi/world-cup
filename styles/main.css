@@ -15,6 +15,7 @@ html * {
   margin: 0;
   padding: 0;
   text-transform: capitalize;
+  line-height: 1.7;
 }
 
 .bg-primary {
@@ -212,7 +213,13 @@ body {
 
 /* accoridan */
 
+.accordion-button {
+  
+}
 
+.accordion-button::before {
+  flex-grow: 1;
+}
 /* // accordian // */
 /* 
 
