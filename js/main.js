@@ -4,6 +4,29 @@ const apiToken = "321d42def7934e019575f79b9b90442d";
 // HTML ELEMENTS
 const dataDiv = document.getElementById("data");
 const btns = document.querySelectorAll(".btn");
+const matchDetails = document.getElementById('matchDetails');
+// object of days
+
+days = {
+  0: "الأحد",
+  1: "الاثنين",
+  2: "الثلاثاء",
+  3: "الأربعاء",
+  4: "الخميس",
+  5: "الجمعة",
+  6: "السبت",
+};
+
+function utcDateFormate(utcDate) {
+  let date = new Date(utcDate);
+  return {
+    day: date.getUTCDay(),
+    dayInMonth: date.getUTCDate(),
+    month: date.getUTCMonth() + 1,
+    hour: date.getUTCHours(),
+    minutes: date.getUTCMinutes(),
+  };
+}
 
 // FUNCTION TO GET data
 function getStandings() {
@@ -109,7 +132,98 @@ function getStandings() {
 
 // FUNCTION TO GET MATCHES
 
-function getMatches() {}
+function getMatches() {
+  const matches = "matches";
+  dataDiv.firstElementChild.innerHTML = "";
+
+  axios
+    .get(`${baseUrl}${matches}`, {
+      headers: {
+        "X-Auth-Token": apiToken,
+      },
+    })
+    .then((res) => {
+      const matches = res.data.matches;
+      let content = ``;
+      for (let match of matches) {
+        if (match.homeTeam.name === null) continue;
+        let matchDate = utcDateFormate(match.utcDate);
+        content += `
+        <div class="card text-center border-0 rounded-1">
+          <div class="card-header bg-success">
+            <ul class="nav">
+              <li class="nav-item ">
+                <div class="nav-link badge p-2 text-bg-info" >
+                  <span>${days[matchDate.day]}</span>
+                  <span>${matchDate.dayInMonth} - ${matchDate.month} - 2022 | ${
+          matchDate.hour
+        }:${matchDate.minutes == "0" ? "00" : matchDate.minutes}</span>
+                </div>
+            </ul>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">${match.stage}</h5>
+            <div class="w-100 bg-success text-white row">
+              <div class="team-home col-3 bg-primary rounded-1">
+                  <div class="teamCrest mt-1 matchCrest mx-2 d-inline-block" style="background-image: url('${
+                    match.homeTeam.crest
+                  }');"></div>
+                  <div class="tla text-white d-block">${
+                    match.homeTeam.tla
+                  }</div>
+              </div>
+              <div class="col-6">
+                <div class="d-flex justify-content-between align-items-center h-100">
+                  <div class="result ms-5 fw-bolder fs-3">${
+                    match.score.fullTime.home ?? "x"
+                  }</div>
+                  <div class="against fw-bold fs-1">-</div>
+                  <div class="result me-5 fw-bolder fs-3">${
+                    match.score.fullTime.home ?? "x"
+                  }</div>
+                </div>
+              </div>
+              <div class="team-home col-3 bg-primary rounded-1">
+                  <div class="teamCrest mt-1 mx-2 d-inline-block" style="background-image: url('${
+                    match.awayTeam.crest
+                  }');"></div>
+                  <div class="tla text-white d-block">${
+                    match.awayTeam.tla
+                  }</div>
+              </div>
+            </div>
+            <div class="accordion accordion-flush my-4" id="matchDetails">
+            <div class="accordion-item" data-id="${match.id}">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed fw-semibold fs-1 text-center text-bg-info" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${match.id}" aria-expanded="false" aria-controls="flush-collapseOne">
+                  <h6 class="w-100 text-center">إظهار تفاصيل المباراة</h6>
+                </button>
+              </h2>
+              <div id="flush-collapse${match.id}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#matchDetails">
+                <div class="accordion-body">
+                  <div class="d-flex justify-content-between">
+                    <h5>Qatar</h5>
+                    <h5>Belgim</h5>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-items-center">
+                    <h5>الأحد 20-20-2022 | 19:00</h5>
+                    <h4>منتهية</h4>
+                    <h6>ملعب المباراة <span>ومبلي بران</span></h6>
+                    <h6>المرحلة</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <hr>
+        `;
+      }
+      dataDiv.lastElementChild.innerHTML = content;
+    })
+    .catch((err) => console.log(err.name));
+}
 
 // ADD EVENT TO EACH BTN
 btns.forEach((btn) =>
@@ -119,7 +233,7 @@ btns.forEach((btn) =>
     btns.forEach((btn) => btn.classList.remove("active"));
     this.classList.add("active");
     if (this.innerText === "المجموعات") getStandings();
-    else if (this.innerText === "المباريات");
+    else if (this.innerText === "المباريات") getMatches();
   })
 );
 

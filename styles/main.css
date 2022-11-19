@@ -7,6 +7,7 @@
   --color-primary: #6c1d45;
   --color-primary-dark: #47132d;
   --color-whiter: #ebdee1;
+  --color-primary-shiny: #990f32;
   --color-transparent: #bb1a3d27;
 }
 
@@ -41,6 +42,14 @@ html * {
   background-color: #c04381 !important;
   color: var(--color-whiter);
   font-weight: bold;
+}
+
+.text-bg-info {
+  background-color: var(--color-primary-shiny) !important;
+  color: var(--color-whiter) !important;
+  font-weight: 900 !important;
+  font-size: larger;
+
 }
 body {
   margin: 0;
@@ -153,7 +162,6 @@ body {
 /* // btns // */
 
 /* Standings */
-
 #teamCrest,
 .teamCrest {
   width: 30px;
@@ -200,6 +208,12 @@ body {
   border: 0;
   margin: 0;
 }
+
+
+/* accoridan */
+
+
+/* // accordian // */
 /* 
 
 media query
