@@ -185,7 +185,7 @@ function getMatches() {
                   }</div>
                   <div class="against fw-bold fs-1">-</div>
                   <div class="result me-5 fw-bolder fs-3">${
-                    match.score.fullTime.home ?? "x"
+                    match.score.fullTime.away ?? "x"
                   }</div>
                 </div>
               </div>
