@@ -276,6 +276,48 @@ function getMatchInfo(matchId) {
     .catch((err) => console.log(err.name));
 }
 
+function getScorer() {
+  document.getElementById('data').innerHTML = '';
+  axios.get(`${baseUrl}scorers`, {
+    headers: {
+      "X-Auth-Token" : apiToken,
+    }
+  }).then(response => {
+    let scorers = response.data.scorers;
+    let rank = 0;
+    let content = `
+      <div class="row">
+          <div class="card p-0">
+            <div class="card-header d-flex flex-column bg-primary">
+              <h5 class="d-flex justify-content-center align-items-center">scorer leadership</h5>
+            </div>
+            <div class="row bg-secondary">
+              <div class="rank col-sm-2 col-1 d-flex justify-content-center align-items-center">R</div>
+              <div class="col-sm-6 col-8 d-flex justify-content-center align-items-center">player</div>
+              <div class="col-sm-4 col-2 d-flex justify-content-center align-items-center">goals</div>
+            </div>
+    `;
+    scorers.forEach(scorer => {
+      content += `
+          <div class="row">
+            <div class="rank col-sm-2 col-1 ms-1 d-flex justify-content-center align-items-center">${++rank}</div>
+            <div class="col-sm-6 col-8 row justify-content-center align-items-center">
+              <div class="teamCrest col-2" style="background-image: url('${scorer.team.crest}');"></div>
+              <div class="player-name col-sm-4 col-6">${scorer.player.name}</div>
+            </div>
+            <div class="col-sm-4 col-2 d-flex justify-content-center align-items-center">${scorer.goals}</div>
+          </div>
+          <hr>
+      `
+    })
+    content += `
+      </div>
+    </div>
+    `;
+    document.getElementById('data').innerHTML = content;
+  })
+}
+
 document.addEventListener("click", function (e) {
   e.preventDefault();
   if (e.target.classList.contains("opend")) return;
@@ -294,6 +336,7 @@ btns.forEach((btn) =>
     this.classList.add("active");
     if (this.innerText === "المجموعات") getStandings();
     else if (this.innerText === "المباريات") getMatches();
+    else if (this.innerText === 'الهدافون') getScorer();
   })
 );
 

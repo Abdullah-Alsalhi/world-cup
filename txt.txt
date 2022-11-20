@@ -200,3 +200,27 @@
             </div>
           </div>
         </div>
+
+
+
+
+<div class="row">
+  <div class="card p-0">
+    <div class="card-header d-flex flex-column bg-primary">
+      <h5 class="d-flex justify-content-center align-items-center">scorer leadership</h5>
+    </div>
+    <div class="row bg-secondary">
+      <div class="rank col-2 d-flex justify-content-center align-items-center">R</div>
+      <div class="col-6 d-flex justify-content-center align-items-center">player</div>
+      <div class="col-4 d-flex justify-content-center align-items-center">goals</div>
+    </div>
+    <div class="row">
+      <div class="rank col-2 col-2 d-flex justify-content-center align-items-center">1</div>
+      <div class="col-6 row justify-content-center align-items-center">
+        <div class="teamCrest col-2" style="background-image: url('./assets/images/qatar-world-cup.png');"></div>
+        <div class="player-name col-4">Lionel messi</div>
+      </div>
+      <div class="col-4 col-2 d-flex justify-content-center align-items-center">5</div>
+    </div>
+  </div>
+</div>
