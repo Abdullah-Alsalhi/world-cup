@@ -180,6 +180,8 @@ body {
   height:2.5rem;
 }
 
+
+
 .team-row:not(last-child) {
   border-bottom: 1px solid var(--color-whiter);
 }
@@ -251,6 +253,15 @@ media query
   }
 }
 
+.win-1,
+.win-2 { 
+  border-left: 2px solid rgba(0, 128, 0, 0.728);
+}
+
+.win-3,
+.win-4 { 
+  border-left: 2px solid rgba(255, 0, 0, 0.721);
+}
 /* // Medium devices (tablets, 768px and up) */
 @media screen and (min-width: 768px) {
   .teamCrest {

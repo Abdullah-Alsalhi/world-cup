@@ -85,7 +85,7 @@ function getStandings() {
           <div id="teamOrder${team.position}" class="order-${team.position}">
               <div class="row bg-success  team-row"">
                 <div
-                  class="col col-sm-1 p-1 d-flex justify-content-center align-items-center"
+                  class="col col-sm-1 p-1 d-flex justify-content-center align-items-center win-${team.position}"
                 >
                 ${team.position}
                 </div>
@@ -131,7 +131,6 @@ function getStandings() {
 }
 
 // FUNCTION TO GET MATCHES
-
 function getMatches() {
   const matches = "matches";
   dataDiv.firstElementChild.innerHTML = "";
@@ -238,6 +237,7 @@ function getMatches() {
     .catch((err) => console.log(err.name));
 }
 
+// FUNCTION TO GET MORE INFORMATION ABOUT PARTICULAR MATCH
 function getMatchInfo(matchId) {
   document.getElementById(`flush-collapse${matchId}`).innerHTML = "";
   const matches = "matches";
@@ -258,9 +258,11 @@ function getMatchInfo(matchId) {
         <div class="d-flex flex-column justify-content-center align-items-center">
           <h5 style="direction: rtl;">
             <span>${days[matchDate.day]}<br></span>
-            <span>${matchDate.dayInMonth} - ${matchDate.month === 11 ? 'نوفمبر' : 'ديسمبر'} | ${
-        matchDate.hour
-      }:${matchDate.minutes == "0" ? "00" : matchDate.minutes}</span></h5>
+            <span>${matchDate.dayInMonth} - ${
+        matchDate.month === 11 ? "نوفمبر" : "ديسمبر"
+      } | ${matchDate.hour}:${
+        matchDate.minutes == "0" ? "00" : matchDate.minutes
+      }</span></h5>
           <h4>${resposne.data.status}</h4>
           <h6>ملعب المباراة <br><b>${resposne.data.venue}</b></h6>
           <h6>${
@@ -276,16 +278,19 @@ function getMatchInfo(matchId) {
     .catch((err) => console.log(err.name));
 }
 
+// FUNCTION GET TOP 10 SCORER
 function getScorer() {
-  document.getElementById('data').innerHTML = '';
-  axios.get(`${baseUrl}scorers`, {
-    headers: {
-      "X-Auth-Token" : apiToken,
-    }
-  }).then(response => {
-    let scorers = response.data.scorers;
-    let rank = 0;
-    let content = `
+  document.getElementById("data").innerHTML = "";
+  axios
+    .get(`${baseUrl}scorers`, {
+      headers: {
+        "X-Auth-Token": apiToken,
+      },
+    })
+    .then((response) => {
+      let scorers = response.data.scorers;
+      let rank = 0;
+      let content = `
       <div class="row">
           <div class="card p-0">
             <div class="card-header d-flex flex-column bg-primary">
@@ -297,25 +302,31 @@ function getScorer() {
               <div class="col-sm-4 col-2 d-flex justify-content-center align-items-center">goals</div>
             </div>
     `;
-    scorers.forEach(scorer => {
-      content += `
+      scorers.forEach((scorer) => {
+        content += `
           <div class="row">
             <div class="rank col-sm-2 col-1 ms-1 d-flex justify-content-center align-items-center">${++rank}</div>
             <div class="col-sm-6 col-8 row justify-content-center align-items-center">
-              <div class="teamCrest col-2" style="background-image: url('${scorer.team.crest}');"></div>
-              <div class="player-name col-sm-4 col-6">${scorer.player.name}</div>
+              <div class="teamCrest col-2 score-crest" style="background-image: url('${
+                scorer.team.crest
+              }');"></div>
+              <div class="player-name col-sm-4 col-6">${
+                scorer.player.name
+              }</div>
             </div>
-            <div class="col-sm-4 col-2 d-flex justify-content-center align-items-center">${scorer.goals}</div>
+            <div class="col-sm-4 col-2 d-flex justify-content-center align-items-center">${
+              scorer.goals
+            }</div>
           </div>
           <hr>
-      `
-    })
-    content += `
+      `;
+      });
+      content += `
       </div>
     </div>
     `;
-    document.getElementById('data').innerHTML = content;
-  })
+      document.getElementById("data").innerHTML = content;
+    });
 }
 
 document.addEventListener("click", function (e) {
@@ -336,7 +347,7 @@ btns.forEach((btn) =>
     this.classList.add("active");
     if (this.innerText === "المجموعات") getStandings();
     else if (this.innerText === "المباريات") getMatches();
-    else if (this.innerText === 'الهدافون') getScorer();
+    else if (this.innerText === "الهدافون") getScorer();
   })
 );
 
