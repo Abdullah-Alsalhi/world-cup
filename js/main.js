@@ -17,13 +17,14 @@ days = {
   6: "السبت",
 };
 
-function utcDateFormate(utcDate) {
+function utcDateFormateToLocal(utcDate) {
+  console.log(utcDate)
   let date = new Date(utcDate);
   return {
     day: date.getUTCDay(),
     dayInMonth: date.getUTCDate(),
     month: date.getUTCMonth() + 1,
-    hour: date.getUTCHours(),
+    hour: date.getUTCHours() - date.getTimezoneOffset() / 60,
     minutes: date.getUTCMinutes(),
   };
 }
@@ -146,7 +147,7 @@ function getMatches() {
       let content = ``;
       for (let match of matches) {
         if (match.homeTeam.name === null) continue;
-        let matchDate = utcDateFormate(match.utcDate);
+        let matchDate = utcDateFormateToLocal(match.utcDate);
         content += `
         <div class="card text-center border-0 rounded-1">
           <div class="card-header bg-success">
@@ -248,7 +249,7 @@ function getMatchInfo(matchId) {
       },
     })
     .then((resposne) => {
-      let matchDate = utcDateFormate(resposne.data.utcDate);
+      let matchDate = utcDateFormateToLocal(resposne.data.utcDate);
       let content = `
       <div class="accordion-body">
         <div class="d-flex justify-content-between">
