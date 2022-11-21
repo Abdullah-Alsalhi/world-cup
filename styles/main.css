@@ -279,6 +279,11 @@ media query
   }
 }
 
+.row .row .teamCrest {
+  width: 2rem;
+  height: 2rem;
+}
+
 /* // Large devices (desktops, 992px and up) */
 @media screen and (min-width: 992px) {
 }
