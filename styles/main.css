@@ -262,6 +262,10 @@ media query
 .win-4 { 
   border-left: 2px solid rgba(255, 0, 0, 0.721);
 }
+
+.player-name {
+  white-space: nowrap;
+}
 /* // Medium devices (tablets, 768px and up) */
 @media screen and (min-width: 768px) {
   .teamCrest {
