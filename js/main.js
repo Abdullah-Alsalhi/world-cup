@@ -148,11 +148,17 @@ function getStandings() {
 }
 
 // FUNCTION TO GET MATCHES
-function getMatches(matchStatus = "FINISHED", active) {
+function getMatches(matchStatus = "FINISHED", today) {
   const matches = "matches";
-  
+  let url;
+  if (today === undefined) {
+  url = `${baseUrl}${matches}?status=${matchStatus}`;
+  }else {
+    url = `${baseUrl}${matches}?dateFrom=${today}&dateTo=${today}`;
+  }
+
   axios
-    .get(`${baseUrl}${matches}?status=${matchStatus}`, {
+    .get(url, {
       headers: {
         "X-Auth-Token": apiToken,
       },
@@ -377,6 +383,11 @@ btns.forEach((btn) =>
       getMatches('FINISHED');
     }
     else if (this.innerText === "الهدافون") getScorer();
+    else if (this.innerText === 'اليوم') {
+      document.querySelector('#data .row').innerHTML = '';
+      let date = new Date();
+      getMatches('FINISHED',today = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
+    }
   })
 );
 
