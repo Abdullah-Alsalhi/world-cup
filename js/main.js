@@ -7,6 +7,23 @@ const btns = document.querySelectorAll(".btn");
 const matchDetails = document.getElementById("matchDetails");
 // object of days
 
+let matchButtons = `
+  <section
+    id="matchButtons"
+    class="d-flex justify-content-center align-items-center p-4 m-2"
+    >
+    <button  data-status="FINISHED" class="btn active btn-outline-primary order-3">
+      المنتهية
+    </button>
+    <button data-status="SCHEDULED" class="btn btn-outline-primary order-2">
+      المجدولة
+    </button>
+    <button  data-status="IN_PLAY" class="btn btn-outline-primary order-1">
+      الآن
+    </button>
+  </section>
+`
+
 days = {
   0: "الأحد",
   1: "الاثنين",
@@ -18,7 +35,6 @@ days = {
 };
 
 function utcDateFormateToLocal(utcDate) {
-  console.log(utcDate)
   let date = new Date(utcDate);
   return {
     day: date.getUTCDay(),
@@ -132,19 +148,18 @@ function getStandings() {
 }
 
 // FUNCTION TO GET MATCHES
-function getMatches() {
+function getMatches(matchStatus = "FINISHED", active) {
   const matches = "matches";
-  dataDiv.firstElementChild.innerHTML = "";
-
+  
   axios
-    .get(`${baseUrl}${matches}`, {
+    .get(`${baseUrl}${matches}?status=${matchStatus}`, {
       headers: {
         "X-Auth-Token": apiToken,
       },
     })
     .then((res) => {
       const matches = res.data.matches;
-      let content = ``;
+      let content = `<div id='matchesContainer'>`;
       for (let match of matches) {
         if (match.homeTeam.name === null) continue;
         let matchDate = utcDateFormateToLocal(match.utcDate);
@@ -232,8 +247,9 @@ function getMatches() {
         </div>
         <hr>
         `;
+        content += `</div>`
       }
-      dataDiv.lastElementChild.innerHTML = content;
+      dataDiv.firstElementChild.innerHTML += content;
     })
     .catch((err) => console.log(err.name));
 }
@@ -332,10 +348,18 @@ function getScorer() {
 
 document.addEventListener("click", function (e) {
   e.preventDefault();
-  if (e.target.classList.contains("opend")) return;
+  if (e.target.classList.contains("opend") || e.target.classList.contains('active')) return;
   if (e.target.hasAttribute("data-matchId")) {
     e.target.classList.add("opend");
     getMatchInfo(e.target.dataset.matchid);
+  }
+  if (e.target.hasAttribute('data-status')){
+    document.getElementById('matchesContainer').remove(); 
+    document.querySelectorAll('#matchButtons .btn').forEach(matchBtn => {
+      matchBtn.classList.remove('active');
+    });
+    e.target.classList.add('active');
+    getMatches(e.target.dataset.status)
   }
 });
 
@@ -347,7 +371,11 @@ btns.forEach((btn) =>
     btns.forEach((btn) => btn.classList.remove("active"));
     this.classList.add("active");
     if (this.innerText === "المجموعات") getStandings();
-    else if (this.innerText === "المباريات") getMatches();
+    else if (this.innerText === "المباريات") {
+      dataDiv.firstElementChild.innerHTML = ''
+      dataDiv.firstElementChild.innerHTML += matchButtons;
+      getMatches('FINISHED');
+    }
     else if (this.innerText === "الهدافون") getScorer();
   })
 );
